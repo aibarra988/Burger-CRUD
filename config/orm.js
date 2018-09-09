@@ -27,11 +27,10 @@ const orm = {
     },
     updateOne(id, devoured) {
         return new Promise((resolve, reject) => {
-            const queryString = `
-                UPDATE bugers 
-                SET devoured = ?
-                WHERE id = ?
-            `;
+            const queryString = "UPDATE burgers SET devoured = ? WHERE id = ?";
+
+            console.log(id, devoured);
+
             connection.query(queryString, [devoured, id], (err, data) => {
                 if (err) reject(err);
                 resolve(data);
