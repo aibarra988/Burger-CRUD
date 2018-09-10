@@ -35,6 +35,15 @@ const orm = {
                 resolve(data);
             });
         });
+    },
+    delete(id) {
+        return new Promise((resolve, reject) => {
+            const queryString = `DELETE FROM burgers WHERE id = ?`;
+            connection.query(queryString, [id], (err, data) => {
+                if (err) reject(err);
+                resolve(data);
+            });
+        });
     }
 };
 

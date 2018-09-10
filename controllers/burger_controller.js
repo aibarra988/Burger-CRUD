@@ -39,4 +39,20 @@ router.put('/api/burgers', (req, res) => {
         });
 });
 
+router.delete("/api/burgers", (req, res) => {
+    const { id } = req.body;
+
+    burger.delete(id)
+        .then(data => {
+            if (data.affectedRows >= 1) {
+                res.send(200, `Burger ${id} was deleted`).end();
+            } else {
+                res.send(404, `Burger ${id} was not found`).end();
+            }
+        })
+        .catch(err => {
+            res.status(500).send("Something went wrong with deleting your burger [" + err + "]");
+        });
+});
+
 module.exports = router;

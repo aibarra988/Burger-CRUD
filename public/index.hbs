@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Burgers Yo!</title>
+</head>
+<body>
+    {{{ body }}}
+    <script type="text/javascript">
+        $(document).on("click", ".eat", function () {
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/api/burgers",
+                method: "PUT",
+                data: { id: id }
+            }).then(function(response) {
+                console.log("Burger eaten!");
+                location.reload();
+            });
+        });
+
+        $("form").on("submit", function() {
+            var name = $("#name-input").val().trim();
+            $.ajax({
+                url: "/api/burgers",
+                method: "POST",
+                data: { name: name }
+            }).then(function(response) {
+                console.log("Burger added!");
+                location.reload();
+            });
+        });
+
+
+    </script>
+</body>
+</html>

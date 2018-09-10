@@ -7,6 +7,9 @@ const burger = {
     addBurger(burgerName) {
         return orm.insertOne(burgerName);
     },
+    delete(id) {
+        return orm.delete(id);
+    },
     devourBurger(id, devoured) {
         return orm.updateOne(id, devoured);
     }
